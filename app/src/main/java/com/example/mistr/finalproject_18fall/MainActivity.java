@@ -24,7 +24,9 @@ public class MainActivity extends Activity {
 
         final ImageButton movie = (ImageButton) findViewById(R.id.img_movie);
         Drawable d3 = Drawable.createFromPath("@drawable/cbc");
-        movie.setImageDrawable(d3);
+
+
+
 
     }
 
