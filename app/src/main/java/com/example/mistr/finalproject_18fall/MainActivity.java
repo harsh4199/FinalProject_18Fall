@@ -1,8 +1,10 @@
 package com.example.mistr.finalproject_18fall;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
@@ -12,22 +14,28 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        final ImageButton cbc = (ImageButton) findViewById(R.id.img_cbc);
-        Drawable d1 = Drawable.createFromPath("@drawable/cbc");
-        cbc.setImageDrawable(d1);
-
-
-        final ImageButton food = (ImageButton) findViewById(R.id.img_food);
-        Drawable d2 = Drawable.createFromPath("@drawable/cbc");
-        food.setImageDrawable(d2);
-
-        final ImageButton movie = (ImageButton) findViewById(R.id.img_movie);
-        Drawable d3 = Drawable.createFromPath("@drawable/cbc");
+        Button button1 = findViewById(R.id.cbc);
+        Button button2 = findViewById(R.id.food);
+        Button button3 = findViewById(R.id.movie);
 
 
+        button1.setOnClickListener(e -> {
+            Intent nextScreen = new Intent(MainActivity.this, FoodActivity.class);
+            startActivityForResult(nextScreen, 555);
+        });
+
+
+        button2.setOnClickListener(e -> {
+            Intent nextScreen = new Intent(MainActivity.this, CBCActivity.class);
+            startActivityForResult(nextScreen, 444);
+        });
+
+        button3.setOnClickListener(e -> {
+            Intent nextScreen = new Intent(MainActivity.this, MovieActivity.class);
+            startActivityForResult(nextScreen, 333);
+        });
 
 
     }
-
 }
+
