@@ -17,12 +17,7 @@ public class MainActivity extends Activity {
         Button button1 = findViewById(R.id.cbc);
         Button button2 = findViewById(R.id.food);
         Button button3 = findViewById(R.id.movie);
-
-
-
-
-
-        button2.setOnClickListener(e -> {
+        button1.setOnClickListener(e -> {
             Intent nextScreen = new Intent(MainActivity.this, NewsArticle.class);
             startActivityForResult(nextScreen, 444);
         });

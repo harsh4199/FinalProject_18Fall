@@ -13,27 +13,20 @@
         android:id="@+id/cbc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CBC NEWS"
+        android:text="@string/cbc"
 
         />
     <Button
         android:id="@+id/food"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FOOD"
+        android:text="@string/food"
         />
     <Button
         android:id="@+id/movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MOVIE"
-        />
-
-    <Button
-        android:id="@+id/oc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="OC"
+        android:text="@string/movie"
         />
 
 
