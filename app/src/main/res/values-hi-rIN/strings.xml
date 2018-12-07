@@ -4,5 +4,7 @@
     <string name="cbc">सीबीसी समाचार पाठक</string>
     <string name="food">खाद्य पोषण डेटाबेस</string>
     <string name="movie"> मूवी की जानकारी</string>
+    <string name="savearticle">आलेख को बचाओ</string>
+    <string name="deleteButton">इस आलेख को हटाएं</string>
 
 </resources>

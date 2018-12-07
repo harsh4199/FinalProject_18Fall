@@ -5,27 +5,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class NewsArticle extends Activity {
 
@@ -33,31 +34,47 @@ public class NewsArticle extends Activity {
     private final String Url = "https://www.cbc.ca/cmlink/rss-world";
     protected ListView newsList;
     protected ProgressBar progressBar;
+    private String snackMessage = "Article removed";
     TextView headLines;
     ArrayList<NewsInformation> newsInformationArrayList = new ArrayList<>();
     NewsAdapter newsAdapter;
+    Button save;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_article);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-      //  progressBar.setVisibility(View.VISIBLE);
+Toolbar tool= (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(tool);
+
+        //  progressBar.setVisibility(View.VISIBLE);
         newsAdapter = new NewsAdapter(this);
         new NewsQuaery().execute();
         newsList = findViewById(R.id.news);
         newsList.setAdapter(newsAdapter);
-//        newsList.setOnClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-//            { Intent intent = new Intent(NewsArticle.class, NewsDescriptionAndLink.class);
-//               intent.putExtra("description", newsList.getItemAtPosition())
-//            }});
+        newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent in = new Intent(NewsArticle.this, NewsDescriptionAndLink.class);
+                in.putExtra("headline", newsInformationArrayList.get(position).getHeadline());
+                in.putExtra("description", newsInformationArrayList.get(position).getDescription());
+                in.putExtra("link", newsInformationArrayList.get(position).getLink());
+                startActivityForResult(in, 222);
 
-
-
-
+            }
+        });
+        save = findViewById(R.id.savedBtn);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NewsArticle.this, ListOfArticles.class);
+                startActivity(intent);
+            }
+        });
 
         }
 
@@ -95,23 +112,17 @@ public class NewsArticle extends Activity {
 
         @Override
         protected String doInBackground(String... strings) {
-           // InputStream inputStream = null;
+
                 try {
                   URL  url = new URL("https://www.cbc.ca/cmlink/rss-world");
                 HttpURLConnection    conn = (HttpURLConnection) url.openConnection();
                 InputStream iStream = conn.getInputStream();
-// conn.setReadTimeout(10000);
-//                    conn.setConnectTimeout(15000);
-//                    conn.setRequestMethod("GET");
-//                    conn.setDoInput(true);
-//                    conn.connect();
-             //       inputStream = conn.getInputStream();
+
                     XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                     factory.setNamespaceAware(false);
                     XmlPullParser xpp = factory.newPullParser();
                     xpp.setInput(iStream,"UTF-8");
 
-                  //String value;
                     while (xpp.getEventType() != XmlPullParser.END_DOCUMENT) {
                         switch (xpp.getEventType()) {
 
@@ -155,14 +166,6 @@ public class NewsArticle extends Activity {
                 } catch (Exception e) {
                     Log.i("Exception", e.getMessage());
                 }
-//                finally {
-//                            if(conn != null)
-//                                try{
-//                                    inputStream.close();
-//                                }catch (IOException e){
-//
-//                                }
-//                }
 
                 return "";
         }
@@ -182,23 +185,8 @@ public class NewsArticle extends Activity {
                 newsAdapter.notifyDataSetChanged();
             }
         }
-
-//        protected void onPostExecute(ArrayList<String> title) {
-//             super.onPostExecute();
-//            for(int i=0; i<title.size(); i++) {
-//                NewsInformation n = new NewsInformation();
-//                n.setHeadline(title.get(i));
-//                n.setDescription(title.get(i));
-//                n.setLink(title.get(i));
-//                title.add(news n);
-              //  List.add(n.getHeadline().toString());
-
-
-
-
-            }
-
-        }
+    }
+}
 
 
 

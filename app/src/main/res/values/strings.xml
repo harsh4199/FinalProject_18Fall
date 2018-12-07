@@ -3,5 +3,7 @@
     <string name="cbc">Cbc News Reader</string>
     <string name="food">Food Nutrition Database</string>
     <string name="movie"> Movie Information</string>
+    <string name="savearticle">Save the Article</string>
+    <string name="deleteButton">Delete this Article</string>
 
 </resources>
