@@ -1,6 +1,8 @@
 /**
  * the main activity class for the cbc news reader to
  * display news headlines with saved button
+ *
+ * @author harsh mistry
  */
 
 package com.example.mistr.finalproject_18fall;

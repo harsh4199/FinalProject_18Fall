@@ -1,5 +1,6 @@
 /**
  * this class is the main activity class to choose the different application
+ * @author harsh mistry
  */
 
 
