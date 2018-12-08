@@ -1,4 +1,10 @@
+/**
+ * the main activity class for the cbc news reader to
+ * display news headlines with saved button
+ */
+
 package com.example.mistr.finalproject_18fall;
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +13,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 
-import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +24,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 
 
 import org.xmlpull.v1.XmlPullParser;
@@ -41,22 +48,33 @@ public class NewsArticle extends Activity {
     Button save;
 
 
+    /**
+     * main start method when the application will take place
+     * and to restore the data from the preivious bundle
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_article);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-Toolbar tool= (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(tool);
 
-        //  progressBar.setVisibility(View.VISIBLE);
+
+        progressBar.setVisibility(View.VISIBLE);
         newsAdapter = new NewsAdapter(this);
         new NewsQuaery().execute();
         newsList = findViewById(R.id.news);
         newsList.setAdapter(newsAdapter);
+        progressBar.setVisibility(View.INVISIBLE);
         newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+            /**
+             * method to take user to the choosen articles description and link
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent in = new Intent(NewsArticle.this, NewsDescriptionAndLink.class);
@@ -102,6 +120,9 @@ Toolbar tool= (Toolbar) findViewById(R.id.toolbar);
 
     }
 
+    /**
+     * to read out the news tags from the given url and to save the title, description and link in to the array list
+     */
 
     private class NewsQuaery extends AsyncTask <String, Integer, String> {
      private String news;
@@ -110,6 +131,12 @@ Toolbar tool= (Toolbar) findViewById(R.id.toolbar);
         private ArrayList<String> title = new ArrayList<>();
         private ArrayList<String> links = new ArrayList<>();
 
+        /**
+         * method done into the background when the application is running
+         * make the connection with the given url and read the tags that we want
+         * @param strings
+         * @return
+         */
         @Override
         protected String doInBackground(String... strings) {
 
@@ -170,8 +197,10 @@ Toolbar tool= (Toolbar) findViewById(R.id.toolbar);
                 return "";
         }
 
-
-
+        /**
+         * to set the all headlines in to the arraylist
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);

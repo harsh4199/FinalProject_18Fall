@@ -10,30 +10,23 @@
     <ListView
         android:id="@+id/news"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="450dp"
+
         />
 
-    <Button
-        android:id="@+id/savedBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Saved"
-        android:gravity="bottom"
-        android:layout_alignParentBottom="true"
-        />
-
-
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </Toolbar>
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
+        />
+    <Button
+        android:id="@+id/savedBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saved Articles"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
         />
 
 </LinearLayout>

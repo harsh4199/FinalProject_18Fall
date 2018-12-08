@@ -1,3 +1,8 @@
+/**
+ * this class is the main activity class to choose the different application
+ */
+
+
 package com.example.mistr.finalproject_18fall;
 
 import android.app.Activity;
@@ -17,6 +22,7 @@ public class MainActivity extends Activity {
     Button button1 = findViewById(R.id.cbc);
     Button button2 = findViewById(R.id.food);
     Button button3 = findViewById(R.id.movie);
+    // choose button1 to select cbc new activity
     button1.setOnClickListener(e -> {
       Intent nextScreen = new Intent(MainActivity.this, NewsArticle.class);
       startActivityForResult(nextScreen, 444);

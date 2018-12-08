@@ -1,3 +1,7 @@
+/**
+ * this class is to display the data when we saved article
+ */
+
 package com.example.mistr.finalproject_18fall;
 
 import android.app.Activity;
@@ -16,6 +20,12 @@ public class NewsDescriptionAndLink extends Activity {
     TextView desc;
     TextView lnk;
     Button saveArticle;
+
+    /**
+     * this method is used to read the titles, description adn link saved into the arraylist when we clicked
+     * on the saved button
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
